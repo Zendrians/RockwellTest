@@ -34,7 +34,7 @@ export const scrapByUrlCron = async (req, res) => {
     start: true,
   });
 
-  res.send("Task successfully scheduled");
+  res.status(202).send("Task successfully scheduled");
 };
 
 async function fetchAndScrap(url) {
