@@ -1,4 +1,4 @@
-import * as cheerio from "cheerio";
+import { scrapHtml } from "../utils/htmlScrapper.js";
 
 export const scrapByUrl = async (req, res) => {
   const { url, cronExpression } = req.body;
@@ -10,19 +10,9 @@ export const scrapByUrl = async (req, res) => {
       webResponse.headers.get("content-type") === "text/html"
     ) {
       const baseHtml = await webResponse.text();
-      const $ = cheerio.load(baseHtml);
-      const headers = [];
-      $("h1, h2, h3, h4, h5, h6").each((i, el) => {
-        headers.push({
-          tag: el.name,
-          text: $(el)
-            .text()
-            .replace(/\s{3,}/g, " ")
-            .trim(),
-        });
-      });
+      const scrapedData = scrapHtml(baseHtml);
       res.status(200).json({
-        data: headers,
+        data: scrapedData,
       });
     } else {
       res.status(400).send("Not valid");
