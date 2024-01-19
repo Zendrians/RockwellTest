@@ -13,7 +13,8 @@ export function scrapHtml(htmlString) {
     });
   });
   if (headers.length === 0) {
-    const textOnly = $("html body *")
+    const textArr = [];
+    $("html body *")
       .contents()
       .filter((i, el) => {
         return (
@@ -23,11 +24,16 @@ export function scrapHtml(htmlString) {
           el.parent.name !== "style"
         );
       })
-      .text();
+      .each((i, el) => {
+        textArr.push($(el).text().trim());
+      });
 
     return {
       type: "text",
-      data: textOnly.replace(/\s{3,}/g, " ").substring(0, 999),
+      data: textArr
+        .join(" ")
+        .replace(/\s{3,}/g, " ")
+        .substring(0, 999),
     };
   }
   return { type: "headers", data: headers };
