@@ -1,0 +1,8 @@
+.app__main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  background: #fc466b;
+  background: -webkit-linear-gradient(to bottom, #3f5efb, #fc466b);
+  background: linear-gradient(to bottom, #3f5efb, #fc466b);
+}

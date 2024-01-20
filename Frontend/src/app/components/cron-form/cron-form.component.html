@@ -1,0 +1,31 @@
+<section class="form__section">
+  <form
+    class="form__content-wrapper"
+    [formGroup]="scrapFormGroup"
+    (ngSubmit)="onSubmit()"
+  >
+    <h1 class="form__title">Schedule a web scrapping</h1>
+    <div class="form__input-wrapper">
+      <input
+        type="text"
+        class="form__input"
+        placeholder="Enter URL to scrap"
+        name="webUrl"
+        formControlName="webUrl"
+      />
+      <input
+        class="form__input"
+        placeholder="Enter Cron expression"
+        type="text"
+        name="cronExp"
+        formControlName="cronExp"
+      />
+    </div>
+    <div class="form__button-bar">
+      <button type="submit" class="form__button form__action-btn">
+        Schedule Scrap!
+      </button>
+      <button class="form__button form__results-btn">Results</button>
+    </div>
+  </form>
+</section>
