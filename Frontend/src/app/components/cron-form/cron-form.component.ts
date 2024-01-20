@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ClientService } from '../../services/client.service';
 import {
   FormControl,
   FormGroup,
@@ -19,6 +20,7 @@ var cronRegex = new RegExp(
   styleUrl: './cron-form.component.css',
 })
 export class CronFormComponent {
+  private clientService = inject(ClientService);
   scrapFormGroup = new FormGroup({
     webUrl: new FormControl(null, [
       Validators.required,
@@ -31,6 +33,7 @@ export class CronFormComponent {
   });
 
   onSubmit() {
+    this.clientService.logger('X=1')
     console.log(this.scrapFormGroup.value);
     if (this.scrapFormGroup.valid) {
       console.log('Ready to submit');
