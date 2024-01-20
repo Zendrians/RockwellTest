@@ -1,0 +1,18 @@
+.results__section {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+.results__container {
+  width: 80%;
+}
+
+.results__placeholder {
+  color: white;
+  font-size: 3.2rem;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 15px 20px;
+}
