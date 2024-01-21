@@ -13,9 +13,15 @@ export class ScraperResultsComponent {
   private clientService = inject(ClientService);
   scrappedData: IScrappedData | null = null;
 
+  showData() {
+    if (!this.scrappedData) return '';
+    return JSON.stringify(this.scrappedData.data);
+  }
+
   async getLatestScrap() {
     try {
       const response = await this.clientService.getScrapedData();
+      this.scrappedData = response;
       console.log(response);
     } catch (err) {
       console.log(err);

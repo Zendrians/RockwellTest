@@ -5,10 +5,31 @@
 }
 
 .results__container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
   width: 80%;
+  overflow: clip;
+}
+
+.results__data-title {
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+  text-transform: capitalize;
+}
+
+.results__data-display {
+  background-color: white;
+  width: 600px;
+  white-space: normal;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .results__placeholder {
+  width: 100%;
   color: white;
   font-size: 3.2rem;
   text-align: center;

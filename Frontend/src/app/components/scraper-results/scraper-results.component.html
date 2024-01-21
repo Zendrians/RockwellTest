@@ -1,5 +1,12 @@
 <section class="results__section">
   <div class="results__container">
+    @if(scrappedData) {
+    <h3 class="results__data-title">
+      {{ scrappedData.type === "none" ? "No Data Yet" : scrappedData.type }}
+    </h3>
+    @if(scrappedData.type !== 'none') {
+    <pre class="results__data-display">{{ showData() }}</pre>
+    } }
     <button (click)="getLatestScrap()" class="results__placeholder">
       Click to see the latest scrap
     </button>

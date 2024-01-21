@@ -25,7 +25,7 @@ export const scrapByUrlCron = async (req, res) => {
 
 export const getScrapData = async (req, res) => {
   try {
-    res.status(200).json({ data: TempStorage.getScrapData() });
+    res.status(200).json({ ...TempStorage.getScrapData() });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Something went wrong" });
