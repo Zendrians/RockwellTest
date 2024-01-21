@@ -39,26 +39,18 @@
 }
 
 .form__button-bar {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  column-gap: 20px;
+  display: flex;
+  place-content: center;
 }
 
 .form__button {
   height: 42px;
-  background-color: rgb(27, 129, 129);
+  width: 80%;
   color: white;
   font-size: 1.8rem;
   border-radius: 10px;
   margin-bottom: 15px;
-}
-
-.form__action-btn {
-  background-color: #cd1e1e;
-}
-
-.form__results-btn {
-  background-color: #535cec;
+  border: 2px solid white;
 }
 
 .form__message {
