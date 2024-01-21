@@ -8,7 +8,7 @@ export const scrapByUrlCron = async (req, res) => {
     const { url, cronExpression } = req.body;
     if (!url || !cronExpression) throw new Error("Missing parameters");
 
-    console.log(url, cronExpression);
+    console.log(`Task sheduled to scrap <${url}, on <${cronExpression}>`);
 
     // If needed, save the job ref to a variable to stop it or use its methods
     CronJob.from({
@@ -19,7 +19,7 @@ export const scrapByUrlCron = async (req, res) => {
 
     res.status(202).json({ message: "Task successfully scheduled" });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json({ message: "Could not schedule task" });
   }
 };
@@ -28,7 +28,7 @@ export const getScrapData = async (req, res) => {
   try {
     res.status(200).json({ ...TempStorage.getScrapData() });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json({ message: "Something went wrong" });
   }
 };
