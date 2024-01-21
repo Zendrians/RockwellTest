@@ -1,5 +1,8 @@
 import express from "express";
-import { getScrapData, scrapByUrlCron } from "../controllers/scraper.js";
+import {
+  getScrapData,
+  scrapByUrlCron,
+} from "../controllers/scraperController.js";
 
 const router = express.Router();
 
