@@ -26,6 +26,8 @@
   white-space: normal;
   padding: 10px;
   border-radius: 10px;
+  max-height: 500px;
+  overflow: auto;
 }
 
 .results__placeholder {
