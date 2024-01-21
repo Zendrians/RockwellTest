@@ -24,11 +24,11 @@ export class CronFormComponent {
   private clientService = inject(ClientService);
   message: string | null = null;
   scrapFormGroup = new FormGroup({
-    webUrl: new FormControl(null, [
+    webUrl: new FormControl<string>('', [
       Validators.required,
       Validators.pattern(urlRegex),
     ]),
-    cronExp: new FormControl(null, [
+    cronExp: new FormControl<string>('', [
       Validators.required,
       Validators.pattern(cronRegex),
     ]),
@@ -36,13 +36,19 @@ export class CronFormComponent {
 
   async onSubmit() {
     if (this.scrapFormGroup.valid) {
-      const res = await this.clientService.postCronScrapJob(
-        this.scrapFormGroup.value.webUrl ?? '',
-        this.scrapFormGroup.value.cronExp ?? ''
-      );
-      this.message = res.message;
+      try {
+        const formValue = this.scrapFormGroup.value;
+        if (!formValue.webUrl || !formValue.cronExp) return;
+        const res = await this.clientService.postCronScrapJob(
+          formValue.webUrl,
+          formValue.cronExp
+        );
+        this.message = res.message;
+      } catch {
+        this.message = 'Something went wrong';
+      }
     } else {
-      console.log('Invalid');
+      this.message = 'Invalid fields';
     }
   }
 }
