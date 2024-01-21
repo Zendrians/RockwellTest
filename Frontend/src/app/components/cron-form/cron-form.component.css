@@ -53,6 +53,10 @@
   border: 2px solid white;
 }
 
+.form__message-container {
+  height: 30px;
+}
+
 .form__message {
   text-align: center;
   color: white;

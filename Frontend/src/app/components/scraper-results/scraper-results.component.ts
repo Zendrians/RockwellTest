@@ -22,9 +22,8 @@ export class ScraperResultsComponent {
     try {
       const response = await this.clientService.getScrapedData();
       this.scrappedData = response;
-      console.log(response);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 }
