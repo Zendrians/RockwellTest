@@ -50,6 +50,7 @@
   color: white;
   font-size: 1.8rem;
   border-radius: 10px;
+  margin-bottom: 15px;
 }
 
 .form__action-btn {
@@ -58,4 +59,9 @@
 
 .form__results-btn {
   background-color: #535cec;
+}
+
+.form__message {
+  text-align: center;
+  color: white;
 }
