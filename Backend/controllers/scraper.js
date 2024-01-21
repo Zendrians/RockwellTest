@@ -1,6 +1,8 @@
 import { CronJob } from "cron";
+import { URL } from "node:url";
 import { scrapHtml } from "../utils/htmlScrapper.js";
 import TempStorage from "../utils/tempStorage.js";
+import ping from "ping";
 
 export const scrapByUrlCron = async (req, res) => {
   try {
@@ -34,6 +36,9 @@ export const getScrapData = async (req, res) => {
 
 async function fetchAndScrap(url) {
   try {
+    const host = new URL(url).host;
+    const pingStatus = await ping.promise.probe(host);
+    console.log(`Host alive? ${pingStatus.alive}`);
     const webResponse = await fetch(url);
     if (webResponse.ok) {
       const baseHtml = await webResponse.text();
@@ -41,7 +46,7 @@ async function fetchAndScrap(url) {
       console.log(scrapedData);
       TempStorage.storeScrapData(scrapedData);
     } else {
-      console.log("not valid");
+      console.log("not valid to scrape");
     }
   } catch (err) {
     console.error(err);
