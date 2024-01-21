@@ -1,5 +1,6 @@
 import { CronJob } from "cron";
 import { scrapHtml } from "../utils/htmlScrapper.js";
+import TempStorage from "../utils/tempStorage.js";
 
 export const scrapByUrlCron = async (req, res) => {
   try {
@@ -22,6 +23,15 @@ export const scrapByUrlCron = async (req, res) => {
   }
 };
 
+export const getScrapData = async (req, res) => {
+  try {
+    res.status(200).json({ data: TempStorage.getScrapData() });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
+
 async function fetchAndScrap(url) {
   try {
     const webResponse = await fetch(url);
@@ -29,6 +39,7 @@ async function fetchAndScrap(url) {
       const baseHtml = await webResponse.text();
       const scrapedData = scrapHtml(baseHtml);
       console.log(scrapedData);
+      TempStorage.storeScrapData(scrapedData);
     } else {
       console.log("not valid");
     }
