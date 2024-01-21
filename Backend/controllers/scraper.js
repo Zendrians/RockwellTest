@@ -2,19 +2,24 @@ import { CronJob } from "cron";
 import { scrapHtml } from "../utils/htmlScrapper.js";
 
 export const scrapByUrlCron = async (req, res) => {
-  const { url, cronExpression } = req.body;
-  if (!url || !cronExpression) throw new Error("Missing parameters");
+  try {
+    const { url, cronExpression } = req.body;
+    if (!url || !cronExpression) throw new Error("Missing parameters");
 
-  console.log(url, cronExpression);
+    console.log(url, cronExpression);
 
-  // If needed, save the job ref to a variable to stop it or use its methods
-  CronJob.from({
-    cronTime: cronExpression,
-    onTick: fetchAndScrap.bind(this, url),
-    start: true,
-  });
+    // If needed, save the job ref to a variable to stop it or use its methods
+    CronJob.from({
+      cronTime: cronExpression,
+      onTick: fetchAndScrap.bind(this, url),
+      start: true,
+    });
 
-  res.status(202).json({ message: "Task successfully scheduled" });
+    res.status(202).json({ message: "Task successfully scheduled" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Could not schedule task" });
+  }
 };
 
 async function fetchAndScrap(url) {
