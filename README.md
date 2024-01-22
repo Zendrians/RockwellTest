@@ -23,3 +23,4 @@ With this an instance of node should be up and running in your local machine.
 ## Notes
 
 - The ping functionality relies on the underlying platform (os), its only been tested in Windows so far. It's possible to simply disable it by removing the `isAlivePing` on the `scraperController` in case there's a platform issue.
+- Currently, the scraped data is logged to the console and only the last result is stored to be sent back on the get method of the API.
