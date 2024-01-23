@@ -35,7 +35,7 @@ export const getScrapData = async (req, res) => {
 
 async function fetchAndScrap(url) {
   try {
-    const isALive = isAlivePing(url);
+    const isALive = await isAlivePing(url);
     if (!isALive) return;
     const webResponse = await fetch(url);
     if (webResponse.ok) {
